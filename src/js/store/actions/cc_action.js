@@ -10,7 +10,7 @@ export const loginInCC =(dispatch, UID)=>{
      
         CometChat.login(UID, CCManager.apiKey).then(user=>{  
             console.log("AppUser Information :", {user});
-            addMessageListener(dispatch);  
+             
             return dispatch(setUserSession(user));
     
         }).catch(error=>{ 
@@ -100,7 +100,7 @@ export const updateGroupList=(val)=>{
 //addMessageListener 
 
 export const addMessageListener=(dispatch)=>{
-    console.log("inside addMessageListener ccAction",{dispatch});
+    console.log("inside addMessageListener ccAction" );
     CCManager.addMessageListener(dispatch);    
 }
 
@@ -117,10 +117,11 @@ export const handleActionMessage=(actionMsg)=>{
 
 //handle Text Message 
 
-export const handleTextMessage=(msg,dispatch)=>{
+export const handleTextMessage=(msg)=>{
+    console.log("Text Message recieved : "+ msg.getReceiver());
 
-    console.log("Text Message recieved from : "+ msg.sender);
-    dispatch(updateMessage(msg.sender,msg,"text Recieved : "));
+    return updateMessage(msg.getReceiver(),msg,"");
+
 }
 
 //handle Media Message 
@@ -144,7 +145,7 @@ export const sendTextMessage=(uid,text)=>{
             (message) => {	
                 // if(message instanceof TextMessage){
                     //console.log("mesage callback : " + JSON.stringify(message));
-                    return dispatch(updateMessage(uid,message,"sendText"));
+                    return dispatch(updateMessage(uid,message));
                 //}
         
             
@@ -155,12 +156,11 @@ export const sendTextMessage=(uid,text)=>{
     } 
 }
 
-export const updateMessage=(user,val,tag)=>{
+export const updateMessage=(user,val)=>{
     return {
         type:"updateMessage",
         message:val,
         uid : user,
-        tags:tag
     }
 }
 
@@ -184,7 +184,7 @@ export const getUserMessageHistory=(uid,limit=50)=>{
     return dispatch =>{ 
         messageRequest.fetchPrevious().then(messages => {  
             // handle list of messages received
-            return dispatch(updateMessageList(messages,uid,"messageHistory"));
+            return dispatch(updateMessageList(messages,uid));
 
     //    }).catch(error => {
     //         // handle exception

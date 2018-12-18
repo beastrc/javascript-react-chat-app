@@ -28,7 +28,7 @@ const reducers = (state = intialState, action)=> {
 
         case 'updateMessage':
           
-            console.log(action.tags + " : " + JSON.stringify(action.uid));
+            console.log("User id received meesage.js  : " + JSON.stringify(action.uid));
 
             //find if any object is available for uid 
            
@@ -53,9 +53,6 @@ const reducers = (state = intialState, action)=> {
                 newState.messages.push(tempobject);    
             }
 
-        
-            console.log("message : ", JSON.stringify(newState));
-        
         break;
 
         case 'updateMessageList':
