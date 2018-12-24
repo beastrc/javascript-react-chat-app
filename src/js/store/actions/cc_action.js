@@ -10,7 +10,7 @@ export const loginInCC =(dispatch, UID)=>{
      
         CometChat.login(UID, CCManager.apiKey).then(user=>{  
             console.log("AppUser Information :", {user});
-             
+            addMessageListener(dispatch);  
             return dispatch(setUserSession(user));
     
         }).catch(error=>{ 
@@ -55,6 +55,8 @@ export const getUsers=(limit=1000)=>{
   
     return dispatch => {
         usersRequest.fetchNext().then(users => {
+            
+            dispatch(updateHandler());
             return dispatch(updateUserList(users));
         },error=>{
             console.log("Print Error : "+ JSON.stringify(error));
@@ -62,7 +64,11 @@ export const getUsers=(limit=1000)=>{
     }
 }
 
-
+export const updateHandler = ()=>{
+    return {
+        type:'UPDATED_STAGE', 
+    }
+}
 //Set UpdateUserList
 
 export const updateUserList = (val) =>{
@@ -72,7 +78,6 @@ export const updateUserList = (val) =>{
     }
 }
 
- 
 //getGroups
 export const getGroups=(limit=1000)=>{
    
@@ -80,7 +85,8 @@ export const getGroups=(limit=1000)=>{
 
     return dispatch => {
         groupRequest.fetchNext().then(groups => { 
-            console.log("Group Request output : "+ JSON.stringify(groups));      
+            console.log("Group Request output : "+ JSON.stringify(groups));   
+            dispatch(updateHandler());   
             return dispatch(updateGroupList(groups));
         },error=>{
             console.log("Print Error : "+ JSON.stringify(error));
@@ -100,7 +106,8 @@ export const updateGroupList=(val)=>{
 //addMessageListener 
 
 export const addMessageListener=(dispatch)=>{
-    console.log("inside addMessageListener ccAction" );
+    console.log("inside addMessageListener ccAction",{dispatch});
+    dispatch(updateHandler());
     CCManager.addMessageListener(dispatch);    
 }
 
@@ -117,11 +124,10 @@ export const handleActionMessage=(actionMsg)=>{
 
 //handle Text Message 
 
-export const handleTextMessage=(msg)=>{
-    console.log("Text Message recieved : "+ msg.getReceiver());
+export const handleTextMessage=(msg,dispatch)=>{
 
-    return updateMessage(msg.getReceiver(),msg,"");
-
+    console.log("Text Message recieved from : "+ msg.sender);
+    dispatch(updateMessage(msg.sender,msg,"text Recieved : "));
 }
 
 //handle Media Message 
@@ -145,7 +151,7 @@ export const sendTextMessage=(uid,text)=>{
             (message) => {	
                 // if(message instanceof TextMessage){
                     //console.log("mesage callback : " + JSON.stringify(message));
-                    return dispatch(updateMessage(uid,message));
+                    return dispatch(updateMessage(uid,message,"sendText"));
                 //}
         
             
@@ -156,11 +162,12 @@ export const sendTextMessage=(uid,text)=>{
     } 
 }
 
-export const updateMessage=(user,val)=>{
+export const updateMessage=(user,val,tag)=>{
     return {
         type:"updateMessage",
         message:val,
         uid : user,
+        tags:tag
     }
 }
 
@@ -184,7 +191,7 @@ export const getUserMessageHistory=(uid,limit=50)=>{
     return dispatch =>{ 
         messageRequest.fetchPrevious().then(messages => {  
             // handle list of messages received
-            return dispatch(updateMessageList(messages,uid));
+            return dispatch(updateMessageList(messages,uid,"messageHistory"));
 
     //    }).catch(error => {
     //         // handle exception
@@ -193,4 +200,17 @@ export const getUserMessageHistory=(uid,limit=50)=>{
     }   
   
 }
+
+
+
+//set startFetching 
+
+export const startFetching = () =>{
+    return{
+        type:"SYNC_STARTED",
+        status:1        
+    }
+}
+
+
 

@@ -1,0 +1,121 @@
+@import url("./cc-style.css");
+
+body{
+    text-rendering: optimizeLegibility;
+}
+.padding-48{
+    padding: 48px !important;;
+}
+
+
+/* login form */
+
+.logincontainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    background-color: #ffffff00;
+    height: 100%;
+}
+
+.cc-form-input{
+    border-radius: 20px;
+    border-color: #FFFFFF;
+    box-shadow: 0 13px 25px #0000000c !important;
+    color: black;
+    height: 64px;
+}
+
+.cc-submit-btn{
+    background-color: #2636be !important;
+    border-color: #2636be !important;
+    border-radius: 20px;
+    align-content: center;
+    width: 60%;
+    margin-left: 20%;
+    box-shadow: #0000000c 0 13px 20px;
+    align-self: center;
+    margin-top: 32px;
+}
+
+.login-form-container{
+    box-shadow: 0 13px 25px 0 #0000000c;
+    padding: 48px;
+    background: white;
+    border-radius: 20px;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+    box-shadow: 0 13px 25px #0000000c !important;
+}
+
+/*scrollbar*/
+
+*::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+
+}
+
+
+/* header_icon  */
+
+.header-icon{
+    height: 100%;
+    font-size: 18px;
+    float: right;
+    display: inline;
+    align-self: center;
+    line-height: 34px;
+}
+
+.margin-right-10{
+    margin-right: 10px !important;
+}
+
+
+.sidebarHeader{
+    box-sizing: border-box !important;
+    justify-content: space-between !important;
+    padding: 20px 20px 20px 20px !important;
+}
+
+.tab_icon{
+    height: 28px;
+    width: auto;
+}
+
+
+.tab_title{
+    font-size: 12px;
+    color: #011000;
+}
+
+
+nav nav-pills>li>a{
+    color:#d9dbdd;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus, .nav-pills>li.active>a
+{
+    background-color: white !important;
+       
+
+}
+
+

@@ -107,7 +107,5 @@ npm run build
 
 #  NOTE : 
 Develop you Real time Chat Application using Cometchat pulse. 
-
-
-Download CometChat Pulse from npm library : 
-[https://www.npmjs.com/package/@cometchat-pulse/cometchat-pulse.js](https://www.npmjs.com/package/@cometchat-pulse/cometchat-pulse.js)
+**Using Cometchat Pulse version : 0.0.2**
+Download CometChat Pulse from npm library : [https://www.npmjs.com/package/@cometchat-pulse/cometchat-pulse.js](https://www.npmjs.com/package/@cometchat-pulse/cometchat-pulse.js)

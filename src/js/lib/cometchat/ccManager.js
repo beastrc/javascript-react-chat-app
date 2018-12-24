@@ -10,8 +10,13 @@ export default class CCManager {
 
     static cometchat = null;
     
-    static appId        =   '{APP_ID}';     //Enter your App ID 
-    static apiKey       =   '{API_KEY}';    //Enter your API KEY
+    
+    static appId        =   '6e13b23d7a3';
+    static apiKey       =   '824649fc1cdf02059975c40174d0af23695aea65';
+    static LISTENER_KEY   =   "listener1";
+
+    // static appId        =   '{APP_ID}';     //Enter your App ID 
+    // static apiKey       =   '{API_KEY}';    //Enter your API KEY
 
 
     // static LISTENER_KEY   =   'Listener_Key';
@@ -22,6 +27,8 @@ export default class CCManager {
   
     
     static init(dispatcher){
+
+        console.log("Appid : " + this.appId);
             
         //initialize cometchat manager
         CometChat.init(this.appId);
@@ -47,49 +54,55 @@ export default class CCManager {
     }
 
     static addMessageListener(dispatch){
-
-        CometChat.addMessageEventListner(
-            this.LISTENER_KEY,
-            new MessageEventListener({
-                onActionRecived: action => {
-
-                    // handle actions
-                    console.log("ccmangr msg: " + JSON.stringify(action));
-                    console.log("ccmessanger : " + {action});
-                    
-                    this.handleActionMessage(action,dispatch);     
-                },
-                onMessageReceived: message => {
-
-                    console.log("ccmangr msg: " + JSON.stringify(message));
-
-                    console.log("ccmessanger : " + {message});
+        console.log("ccmangr addMessageListener: ");
+        try{
+            CometChat.addMessageEventListner(
+                this.LISTENER_KEY, null,
+                new MessageEventListener({
+                    onActionRecived: (message) => {
     
-                    if( message instanceof TextMessage){
-                        // handle text messages	              
-                        this.handleTextMessage(message,dispatch);
+                        // handle actions
+                         console.log("ccmangr action: " + JSON.stringify(message));
+                        // console.log("ccmessanger : " + {message});
                         
-                    }else if(message instanceof MediaMessage) {
-                        // handle media messages
-                        this.handleMediaMessage(message,dispatch);
-                    }                }
-            })
-        );
+                        this.handleActionMessage(message,dispatch);     
+                    },
+                    onMessageReceived: (message) => {
+    
+                         console.log("ccmangr recieved msg: " + JSON.stringify(message));
+    
+                        // console.log("ccmessanger  recieved : " + {message});
+        
+                        if( message instanceof TextMessage){
+                            // handle text messages	              
+                            this.handleTextMessage(message,dispatch);
+                            
+                        }else if(message instanceof MediaMessage) {
+                            // handle media messages
+                            this.handleMediaMessage(message,dispatch);
+                        }                
+                    }
+                })
+            );
+        }catch(err){
+            console.log("error captured",{err});
+        }
+    
 
     }
 
     static handleMediaMessage(message,dispatch){
-        console.log("ccmangr msg: " + JSON.stringify(message));
+        //console.log("ccmangr msg: " + JSON.stringify(message));
         dispatch(actionCreator.handleMediaMessage(message));
     }
 
     static handleTextMessage(message,dispatch){
-        
+        //console.log("ccmangr msg: " + JSON.stringify(message));
+        actionCreator.handleTextMessage(message,dispatch);
     }
 
     static handleActionMessage(action,dispatch){
-        console.log("ccmangr msg: " + JSON.stringify(message));
-        dispatch(actionCreator.handleTextMessage(action));
+        
     }
 
     static messageRequestBuilder(uid,limit){
