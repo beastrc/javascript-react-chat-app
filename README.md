@@ -11,13 +11,13 @@
 # CometChat Kitchen Sink Sample App (React)
 
 <p align="left">
-    <a href="https://github.com/cometchat-pro/cometchat-pro-react-sample-app/releases/" alt="Releases">
+    <a href="https://github.com/cometchat-pro/javascript-react-chat-app/releases" alt="Releases">
         <img src="https://img.shields.io/github/v/release/cometchat-pro/cometchat-pro-react-sample-app" />
     </a>
     <a href="https://img.shields.io/github/languages/top/cometchat-pro/cometchat-pro-react-sample-app">
         <img src="https://img.shields.io/github/languages/top/cometchat-pro/cometchat-pro-react-sample-app" />
     </a>
-    <a href="https://github.com/cometchat-pro/cometchat-pro-react-sample-app/stargazers">
+    <a href="https://github.com/cometchat-pro/javascript-react-chat-app/stargazers">
         <img src="https://img.shields.io/github/stars/cometchat-pro/cometchat-pro-react-sample-app?style=social" />
     </a>
     <a href="https://twitter.com/CometChat">
@@ -65,7 +65,7 @@ ___
 
 ## Installing React Sample App
 
-1. Clone this repository `git clone https://github.com/cometchat-pro/javascript-react-chat-app.git -b v3`
+1. Clone this repository `git clone https://github.com/cometchat-pro/javascript-react-chat-app.git`
 2. Navigate to the root directory and replace `APP_ID`, `REGION` and `AUTH_KEY` with your CometChat `App ID`, `Region` and `Auth Key` in src/consts.js file.
 
 ![alt text](./Screenshots/constants.png "Constants")
@@ -86,13 +86,13 @@ ___
 
 ## Add UI Kit to your project
 
-Learn more about how to integrate [UI Kit](https://github.com/cometchat-pro/cometchat-pro-react-ui-kit/tree/v3) inside your app. 
+Learn more about how to integrate [UI Kit](https://github.com/cometchat-pro/cometchat-pro-react-ui-kit) inside your app. 
 
 ---
 
 # Troubleshooting
 
-- To read the full dcoumentation on UI Kit integration visit our [Documentation](https://prodocs.cometchat.com/v3.0-beta/docs/react-ui-kit).
+- To read the full dcoumentation on UI Kit integration visit our [Documentation](https://prodocs.cometchat.com/docs/react-ui-kit).
 
 - Facing any issues while integrating or installing the UI Kit please connect with us via real time support present in <a href="https://app.cometchat.com/">CometChat Dashboard.</a>
 
@@ -119,4 +119,4 @@ Contact us via real time support present in [CometChat Dashboard.](https://app.c
 
 ---
 
-This project uses the following [license](https://github.com/cometchat-pro/javascript-react-chat-app/blob/master-v3/LICENSE).
+This project uses the following [license](https://github.com/cometchat-pro/javascript-react-chat-app/blob/master/LICENSE).
